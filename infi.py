@@ -167,7 +167,7 @@ with sess.as_default():
 			#		flag = flag + 1
 			#print (str(i) + " Last Feed Neural(Prediction): \n"+ str(sess.run((fc1), feed_dict={x:ip_img, y_:lbl}))+"\n Label: "+ str(lbl) +"\n Loss Function: "+ str(sess.run(loss, feed_dict={x:ip_img, y_:lbl})) +str("\n Time Taken: ") + str(endtime-begtime) + str(" s"))
 		endtime = time.time()
-		totaltime + =endtime-begtime
+		totaltime = totaltime + (endtime-begtime)
 
 		print ("Epoch: "+ str(flag)+ "\t"+ "Total Error: "+str(loss_to_be_minimized)+ "\t"+ "Tolerance: "+ str(Tolerance)+ "\t" + "Time Taken: "+ str(endtime- begtime))
 					#text_file.write(str(loss)+" "+str(no_epoch)+" "+ "\n")
@@ -175,13 +175,13 @@ with sess.as_default():
 		text_file.write(str(flag) + " "+ str(loss_to_be_minimized))
 		#plt.axis([0, 100, 0, 1e5])
 
-		#plt.ion()
-		#y = loss_to_be_minimized
-		#plt.xlabel("Epochs")
-		#plt.ylabel("Total_loss(L2 Loss)")
-		#plt.title("Loss Vs Epochs")
-		#plt.scatter(flag, y)
-		#plt.pause(0.05)
+		plt.ion()
+		y = loss_to_be_minimized
+		plt.xlabel("Epochs")
+		plt.ylabel("Total_loss(L2 Loss)")
+		plt.title("Loss Vs Epochs")
+		plt.scatter(flag, y)
+		plt.pause(0.05)
 		Train_Checker.append(loss_to_be_minimized) #Updated Loss function
 		if (loss_to_be_minimized < 1000):
 			break

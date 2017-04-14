@@ -211,18 +211,19 @@ for imga in glob.glob("./test/*.jpg"):
 	img = cv2.imread(imga)
 	clone = np.copy(img)
 	prediction=np.zeros(1)
+	count=0
 	#cv2.namedWindow('image')
 	#cv2.setMouseCallback('image', draw_circle)
 
 #	while(1):
-	print ("HEllo INDIA")
+	print ("test_image" + str(count))
 	cv2.imshow('image',img )
 	cv2.waitKey(0)
 	img_resized = cv2.resize(img, (256,256), interpolation = cv2.INTER_LINEAR)
 	image_linear = np.reshape(img_resized, [-1,196608])
 	prediction= (sess.run(fc1, feed_dict={x:image_linear}))
 	image_restored = np.reshape(image_linear, [256,256,3])
-
+	count = count+1
 	[[ix,iy,jx,jy]]=prediction
 	print (prediction)
 	cv2.rectangle(img_resized, (np.floor(ix), np.floor(iy)), (np.floor(jx), np.floor(jy)), (0,0,255), 3)

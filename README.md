@@ -12,7 +12,7 @@ Python 3.5
 # Setup
 This code has been tested on Windows 8.1, Windows 10, Mac BookPro
 
-# Methods used:
+# Methods used
 Meanshift and Camshift Algorithms
 Histograms
 Grabcut Algorithm

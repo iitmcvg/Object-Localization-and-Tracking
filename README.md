@@ -41,3 +41,11 @@ Feed Forward layer 1  | 12288 Neurons |
 Feed Forward layer 2  | 4 Neurons | Output layer
  * Then run `python bounding_box_regression.py`
 ## grabcut.py
+ * This algorithm is used in a hope to classify each pixel to each object.
+ * To run this code firstly you must change the image you want to read, by changing this line of code.
+ ```python
+ cv2.imshow("abc.jpg")
+ ```
+  * The run `python grabcut.py`
+  * Then draw a box around the object and wait for the program to highlight the object separately, drawing a contour around it.  
+

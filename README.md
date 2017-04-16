@@ -13,10 +13,10 @@ Python 3.5
 This code has been tested on Windows 8.1, Windows 10, Mac BookPro
 
 # Methods used
-Meanshift and Camshift Algorithms
-Histograms
-Grabcut Algorithm
-Linear Regression for predicting the vertices of the bounding boxes.
+1) Meanshift and Camshift Algorithms
+2) Histograms
+3) Grabcut Algorithm
+4) Linear Regression for predicting the vertices of the bounding boxes.
 
 
 

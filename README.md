@@ -16,7 +16,8 @@ This code has been tested on Windows 8.1, Windows 10, Mac BookPro
 1) Meanshift and Camshift Algorithms
 2) Histograms
 3) Grabcut Algorithm
-4) Linear Regression for predicting the vertices of the bounding boxes.
+4) Convolutional Neural network to predict four corners for the rectangle
+5) Linear regression loss function to train the network.
 
 
 

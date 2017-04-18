@@ -10,7 +10,7 @@ Tensorflow 1.0+
 Python 3.5
 
 # Setup
-This code has been tested on Windows 8.1, Windows 10, Mac BookPro
+This code has been tested on Windows 8.1, Windows 10, macOS Sierra
 
 # Methods used
 1) Meanshift and Camshift Algorithms

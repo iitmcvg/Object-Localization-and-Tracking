@@ -44,7 +44,7 @@ Feed Forward layer 2  | 4 Neurons | Output layer
  * This algorithm is used in a hope to classify each pixel to each object.
  * To run this code firstly you must change the image you want to read, by changing this line of code.
  ```python
- cv2.imshow("abc.jpg")
+ cv2.imread("abc.jpg")
  ```
   * The run `python grabcut.py`
   * Then draw a box around the object and wait for the program to highlight the object separately, drawing a contour around it.  

@@ -51,7 +51,7 @@ with tf.name_scope('fc3reg'):
 	fcB3=init_b([4])
 	FCreg3=fclayer(FCreg2,fcW3,fcB3)
 
-loss = tf.reduce_sum(tf.square((FCreg3) - (y_)))
+loss = tf.reduce_mean(tf.square((FCreg3) - (y_)))
 
 #reading file and extracting path and labels
 with open(filename, 'r') as File:

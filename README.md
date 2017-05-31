@@ -30,6 +30,10 @@ This code has been tested on Windows 8.1, Windows 10, macOS Sierra
 
 ## bounding_box_regression.py
 1) The dataset created in the above process is used in training the model.
+
+## bboxreg.py
+1) The dataset created is trained along with a pre-trained vgg16 model.
+2) Weights for the model can be found here: https://www.cs.toronto.edu/~frossard/vgg16/vgg16_weights.npz
 ### Model Details
  * Input image is resized to 256x256x3 
 

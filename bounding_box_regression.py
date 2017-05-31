@@ -132,20 +132,13 @@ with sess.as_default():
 			
 			if flag<=1:
 				nm, image, lb = sess.run([filename_queue[0], decodedIm, label_queue])					
-				if i == 0:
-					l1 = labels[(4*i)+0]
-					l2 = labels[(4*i)+1]
-					l3 = labels[(4*i)+2]					
-					l4 = labels[((4*i)+3)]					
-					lbl = [l1,l2,l3,l4]
-					lbl_array.append(lbl)					
-				else:
-					lbl = labels[i]
-					lbl_array.append(lbl)
+				labels =np.reshape(labels, (-1,4))
+				lbl = labels[i]
+				lbl_array.append(lbl)
 				input_image = (sess.run(tf.reshape(image, [196608])))
 				img_array.append(input_image)
 				ip_img = input_image
-				labels =np.reshape(labels, (-1,4))
+				
 			
 			#plt.imshow(image)
 			#plt.title(sess.run(labels))

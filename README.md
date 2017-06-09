@@ -45,7 +45,7 @@ Feed Forward layer 2  | 4 Neurons | Output layer
 
 ## bboxreg.py
 1) The dataset created is trained along with a pre-trained vgg16 model.
-2) Weights for the model can be found here: https://www.cs.toronto.edu/~frossard/vgg16/vgg16_weights.npz
+2) Weights for the model can be found [here](https://www.cs.toronto.edu/~frossard/vgg16/vgg16_weights.npz)
 
 ## grabcut.py
  * This algorithm is used in a hope to classify each pixel to each object.

@@ -8,6 +8,7 @@ import numpy as np
 import cv2
 import glob
 from vgg16 import vgg16
+
 totaltime=0
 text_file =  open("weights.txt", "w") 
 #file containing the path to images and labels
@@ -23,16 +24,16 @@ def fclayer(x, W, b):
 	fc1 = tf.add( tf.matmul(x,W), b)
 	return fc1
 def init_w(shape):
-	return tf.Variable(tf.truncated_normal(shape,mean=0.0, stddev = 0.1),name='weights')
+	return tf.Variable(tf.truncated_normal(shape,mean=0.0, stddev = 0.01),name='weights')
 def init_b(shape):
-	return tf.Variable(tf.constant(0.1, shape=shape),name='biases')
+	return tf.Variable(tf.constant(0.01, shape=shape),name='biases')
 
 x_image = tf.reshape(x, [-1,256,256,3])
-x_image=tf.image.resize_images(x_image,(224,224))
+x_image = tf.image.resize_images(x_image,(224,224))
 
-sess=tf.InteractiveSession()
+sess = tf.InteractiveSession()
 
-vgg=vgg16(x_image,'vgg16_weights.npz',sess)
+vgg = vgg16(x_image,'vgg16_weights.npz',sess)
 
 with tf.name_scope('fc1reg'):
 	shape = int(np.prod(vgg.pool5.get_shape()[1:]))
@@ -51,7 +52,7 @@ with tf.name_scope('fc3reg'):
 	fcB3=init_b([4])
 	FCreg3=fclayer(FCreg2,fcW3,fcB3)
 
-loss = tf.reduce_mean(tf.square((FCreg3) - (y_)))
+loss = tf.reduce_sum(tf.square((FCreg3) - (y_)))
 
 #reading file and extracting path and labels
 with open(filename, 'r') as File:
@@ -83,16 +84,23 @@ lbl = []
 label_queue = filename_queue[1]
 
 #Initializing global and local variable initializers
-init_op = tf.group(tf.local_variables_initializer(), tf.global_variables_initializer())
+
 
 #Creating an interactive session to run in python file
 label_value = []
-sess.run(init_op)
 Tolerance = 0
 no_epoch=0
 loss_to_be_minimized = 0
 label_counter = 0
-train_step = tf.train.GradientDescentOptimizer(1e-8).minimize(loss)
+
+init1 = tf.local_variables_initializer()
+init2 = tf.global_variables_initializer()
+train_step = tf.train.GradientDescentOptimizer(1e-8)
+sess.run(init1)
+sess.run(init2)
+gradients, variables = zip(*train_step.compute_gradients(loss))
+gradients = [None if gradient is None else tf.clip_by_norm(gradient, 5.0) for gradient in gradients]
+train_step = train_step.apply_gradients(zip(gradients, variables))
 Train_Checker = []
 with sess.as_default():
 	
@@ -117,6 +125,7 @@ with sess.as_default():
 				labels =np.reshape(labels, (-1,4))
 				lbl = labels[i]
 				lbl_array.append(lbl)
+				image = cv2.resize(image,(256,256),cv2.INTER_LINEAR)
 				input_image = (sess.run(tf.reshape(image, [196608])))
 				img_array.append(input_image)
 				ip_img = input_image
